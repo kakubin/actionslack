@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'actionslack'
+require 'action_slack'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

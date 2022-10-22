@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'actionslack/version'
+require_relative 'action_slack/version'
 
-module Actionslack
+module ActionSlack
   class Error < StandardError; end
   # Your code goes here...
 end

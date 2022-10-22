@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Actionslack do
+RSpec.describe ActionSlack do
   it 'has a version number' do
-    expect(Actionslack::VERSION).not_to be nil
+    expect(ActionSlack::VERSION).not_to be nil
   end
 
   it 'does something useful' do
