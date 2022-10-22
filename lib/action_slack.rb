@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'action_slack/version'
+require 'active_support'
 
 module ActionSlack
-  class Error < StandardError; end
-  # Your code goes here...
+  extend ActiveSupport::Autoload
 end
