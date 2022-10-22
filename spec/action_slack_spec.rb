@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 RSpec.describe ActionSlack do
-  it 'has a version number' do
-    expect(ActionSlack::VERSION).not_to be nil
-  end
+  describe '.configuration' do
+    subject { described_class.configuration }
 
-  it 'does something useful' do
-    expect(false).to eq(true)
+    it { is_expected.to be_a ActionSlack::Configuration }
+
+    it 'return same object' do
+      first_object_hash = subject.hash
+      second_object_hash = subject.hash
+      expect(first_object_hash).to be second_object_hash
+    end
   end
 end
