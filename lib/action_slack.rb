@@ -12,6 +12,8 @@ module ActionSlack
   autoload :Webhook
   autoload :Notifier
 
+  autoload :SendJob if const_defined?(:ActiveJob)
+
   class << self
     def configure
       yield configuration

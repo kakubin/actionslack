@@ -37,4 +37,6 @@ Gem::Specification.new do |spec|
   # guide at: https://bundler.io/guides/creating_gem.html
   spec.add_dependency 'activesupport'
   spec.add_dependency 'slack-notifier'
+
+  spec.add_development_dependency 'activejob'
 end
