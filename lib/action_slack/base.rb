@@ -15,7 +15,7 @@ module ActionSlack
         if ActionSlack.configuration.async
           SendJob.perform_later(url: instance.url, message: instance.message)
         else
-          Notifier.notify(instance.url, instance.message)
+          Notifier.notify(url: instance.url, message: instance.message)
         end
       end
 
