@@ -1,8 +1,6 @@
 # ActionSlack
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/action_slack`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+ActionSlack is a framework that supports your implementation of slack notification functionality, inspierd by Rails.
 
 ## Installation
 
@@ -16,13 +14,53 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+First, prepare a file with name 'config/slack_webhooks.yml' and register name and url fields of [Slack Incoming Webhook](https://slack.com/help/articles/115005265063-Incoming-webhooks-for-Slack) as array.
+
+```yaml
+- name: channel_onboarding
+  url: https://hooks.slack.com/services/DUMMY/INCOMING_WEBHOOK_URL
+```
+
+Next, define two methods.
+One is the template for the message to be sent.
+The other must be a name of one of addresses you have just registered in `config/slack_webhooks.yml`.
+
+Once everything is registered, you just call method `notify` to that template.
+
+```ruby
+class WelcomingNewCommer < ActionSlack::Base
+  self.attributes = [:new_person]
+
+  def webhook_name
+    'channel_onboarding'
+  end
+
+  def message
+    <<~MSG
+      Welcome, #{new_person.name}
+    MSG
+  end
+end
+
+class Person
+  attr_reader :name
+
+  def initialize(name)
+    @name = name
+  end
+end
+
+person = Person.new('John')
+
+WelcomingNewCommer.notify(new_person: person)
+```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+I will not release this to rubygems until becomes stable.
+Until then, I develop this privately.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+I'm also planning providing rspec tools. Stay tuned.
 
 ## Contributing
 
