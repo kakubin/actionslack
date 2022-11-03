@@ -11,5 +11,9 @@ require 'action_slack'
 # require "pry"
 # Pry.start
 
+ActionSlack.configure do |config|
+  config.instance_variable_set(:@filepath, 'tmp/config/slack_webhooks.yml')
+end
+
 require 'irb'
 IRB.start(__FILE__)
