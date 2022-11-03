@@ -3,12 +3,14 @@
 require 'active_support'
 require 'yaml'
 require 'erb'
+require 'slack-notifier'
 
 module ActionSlack
   extend ActiveSupport::Autoload
 
   autoload :Configuration
   autoload :Webhook
+  autoload :Notifier
 
   class << self
     def configure
