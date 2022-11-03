@@ -3,6 +3,10 @@
 require 'active_job'
 require 'action_slack'
 
+ActionSlack.configure do |config|
+  config.filepath = 'spec/dummy/config/slack_webhooks.yml'
+end
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'

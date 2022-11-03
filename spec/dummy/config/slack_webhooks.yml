@@ -1,0 +1,4 @@
+- name: 'test1'
+  url: http://localhost:3030
+- name: 'test2'
+  url: http://localhost:3031

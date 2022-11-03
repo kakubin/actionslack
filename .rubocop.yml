@@ -4,6 +4,10 @@ inherit_from:
 AllCops:
   TargetRubyVersion: 2.6
 
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: single_quotes
