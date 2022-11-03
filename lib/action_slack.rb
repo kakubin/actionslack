@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support'
+require 'active_support/core_ext'
 require 'yaml'
 require 'erb'
 require 'slack-notifier'
@@ -11,6 +12,7 @@ module ActionSlack
   autoload :Configuration
   autoload :Webhook
   autoload :Notifier
+  autoload :Base
 
   autoload :SendJob if const_defined?(:ActiveJob)
 
