@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'active_support'
+require 'yaml'
+require 'erb'
 
 module ActionSlack
   extend ActiveSupport::Autoload

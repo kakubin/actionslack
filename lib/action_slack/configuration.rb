@@ -5,7 +5,7 @@ module ActionSlack
     attr_accessor :filepath
 
     def initialize
-      @filepath = 'path/to/config'
+      @filepath = 'config/slack_webhooks.yml'
       async!
     end
 
