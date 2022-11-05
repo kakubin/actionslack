@@ -26,9 +26,9 @@ module ActionSlack
 
       def load_yaml(src)
         if Psych::VERSION > '4.0'
-          YAML.load(src, symbolize_names: true, aliases: true, freeze: true)
+          YAML.safe_load(src, symbolize_names: true, freeze: true)
         else
-          YAML.safe_load(src)
+          YAML.safe_load(src, symbolize_names: true)
         end
       end
     end
