@@ -24,6 +24,10 @@ module ActionSlack
       @configuration = self.class.default_configuration.dup
     end
 
+    def async?
+      async
+    end
+
     set_default(:filepath, 'config/slack_webhooks.yml')
     set_default(:async, true)
     set_default(:env, :development)

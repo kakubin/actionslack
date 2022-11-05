@@ -12,11 +12,7 @@ module ActionSlack
       def notify(**kargs)
         instance = create(**kargs)
 
-        if ActionSlack.configuration.async
-          SendJob.perform_later(url: instance.url, message: instance.message)
-        else
-          Notifier.notify(url: instance.url, message: instance.message)
-        end
+        Notifier.notify(url: instance.url, message: instance.message)
       end
 
       def attributes=(attrs)

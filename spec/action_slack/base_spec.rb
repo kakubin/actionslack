@@ -12,18 +12,9 @@ RSpec.describe ActionSlack::Base do
 
     let(:doubled_instance) { double }
 
-    xcontext 'when send in async' do
-      it { expect { subject }.to have_enqueued_job(ActionSlack::SendJob).with(message: 'message', url: 'url') }
-    end
-
-    context 'when send in sync' do
-      before { ActionSlack.configuration.async = false }
-      after { ActionSlack.configuration.async = true }
-
-      it do
-        expect(ActionSlack::Notifier).to receive(:notify).with(message: 'message', url: 'url')
-        subject
-      end
+    it 'call ActionSlack::Notifier#notify' do
+      expect(ActionSlack::Notifier).to receive(:notify).with(url: 'url', message: 'message').exactly(1)
+      subject
     end
   end
 
