@@ -5,6 +5,8 @@ module ActionSlack
     module_function
 
     def notify(url:, message:)
+      message = ActionSlack.configuration.testflight? ? "[ActionSlack Test Posting]\n#{message}\n" : message
+
       if ActionSlack.configuration.async?
         notify_later(url, message)
       else
@@ -15,7 +17,11 @@ module ActionSlack
     private
 
     def notify_now(url, message)
-      Slack::Notifier.new(url).post(text: message)
+      if ActionSlack.configuration.local?
+        # TODO: logging
+      else
+        Slack::Notifier.new(url).post(text: message)
+      end
     end
 
     def notify_later(url, message)

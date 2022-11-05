@@ -28,8 +28,14 @@ module ActionSlack
       async
     end
 
+    %i[local testflight production].each do |type_name|
+      define_method :"#{type_name}?" do
+        type_name == type
+      end
+    end
+
     set_default(:filepath, 'config/slack_webhooks.yml')
     set_default(:async, true)
-    set_default(:env, :development)
+    set_default(:type, :local) # production, testflight, local
   end
 end
