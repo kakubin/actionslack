@@ -4,6 +4,7 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'yaml'
 require 'erb'
+require 'logger'
 require 'slack-notifier'
 
 module ActionSlack
@@ -13,6 +14,7 @@ module ActionSlack
   autoload :Webhook
   autoload :Notifier
   autoload :Base
+  autoload :Logger
 
   autoload :SendJob if const_defined?(:ActiveJob)
 
@@ -23,6 +25,19 @@ module ActionSlack
 
     def configuration
       @configuration ||= Configuration.new
+    end
+
+    def logger
+      @logger ||= ActionSlack::Logger.new($stdout, level: :info)
+    end
+
+    def logger=(logger)
+      if logger.nil?
+        self.logger.level = Logger::FATAL
+        return
+      end
+
+      @logger = logger
     end
   end
 end

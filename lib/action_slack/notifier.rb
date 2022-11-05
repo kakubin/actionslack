@@ -18,9 +18,11 @@ module ActionSlack
 
     def notify_now(url, message)
       if ActionSlack.configuration.local?
-        # TODO: logging
+        ActionSlack.logger.debug { "Post to Slack webhook url: #{url}, message: \"#{message}\"" }
       else
+        ActionSlack.logger.info { "Start posting to Slack webhook url: #{url}, message: \"#{message}\"" }
         Slack::Notifier.new(url).post(text: message)
+        ActionSlack.logger.info 'Posted to Slack'
       end
     end
 
