@@ -4,13 +4,11 @@ ActionSlack is a framework that supports your implementation of slack notificati
 
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
+```ruby
+gem 'actionslack', require: 'action_slack'
+```
 
-    $ bundle add actionslack
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install actionslack
+That's all
 
 ## Usage
 
@@ -55,12 +53,27 @@ person = Person.new('John')
 WelcomingNewCommer.notify(new_person: person)
 ```
 
+Optionally, three configuration items are available.
+
+Especially, there are three options for type: local, testflight, and production.
+
+In `local`, ActionSlack does not post to Slack, only writes logs.
+In `testflight`, ActionSlack will post to Slack, but adds an obvious prefix to the message to tell you that it is not a notice from a production environment.
+So, I recommend to use it for checking connections.
+
+I know you understand about `production` mode.
+
+```ruby
+ActionSlack.configure do |config|
+  config.filepath = "#{PROJECT_ROOT}/webhooks.yml"
+  config.async = false # then, we don't use ActiveJob for posting
+  config.type = :production
+end
+```
+
 ## Development
 
-I will not release this to rubygems until becomes stable.
-Until then, I develop this privately.
-
-I'm also planning providing rspec tools. Stay tuned.
+I'm planning provide rspec tools.
 
 ## Contributing
 
