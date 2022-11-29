@@ -14,8 +14,6 @@ module ActionSlack
       end
     end
 
-    private
-
     def notify_now(url, message)
       if ActionSlack.configuration.local?
         ActionSlack.logger.debug { "Post to Slack webhook url: #{url}, message: \"#{message}\"" }

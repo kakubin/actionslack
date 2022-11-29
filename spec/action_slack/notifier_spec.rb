@@ -39,11 +39,9 @@ RSpec.describe ActionSlack::Notifier do
 
     context 'when send in sync' do
       before { ActionSlack.configuration.async = false }
+      before { WebMock.stub_request(:post, /http/).to_return(status: 200) }
 
-      it do
-        expect(described_class).to receive(:notify_now).with(url, message)
-        subject
-      end
+      it { is_expected.to be true }
 
       context 'if on testflight' do
         around do |e|
@@ -60,10 +58,7 @@ RSpec.describe ActionSlack::Notifier do
           MSG
         end
 
-        it do
-          expect(described_class).to receive(:notify_now).with(url, expected_message)
-          subject
-        end
+        it { is_expected.to be_truthy }
       end
     end
   end
