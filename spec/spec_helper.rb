@@ -2,6 +2,9 @@
 
 require 'active_job'
 require 'action_slack'
+require 'webmock'
+
+WebMock.enable!
 
 ActionSlack.configure do |config|
   config.filepath = 'spec/dummy/config/slack_webhooks.yml'
