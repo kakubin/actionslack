@@ -39,4 +39,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'slack-notifier'
 
   spec.add_development_dependency 'activejob'
+  spec.add_development_dependency 'webmock'
 end
