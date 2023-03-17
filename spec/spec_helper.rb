@@ -6,6 +6,8 @@ require 'webmock'
 
 WebMock.enable!
 
+# require 'rspec/rails'
+
 ActionSlack.configure do |config|
   config.filepath = 'spec/dummy/config/slack_webhooks.yml'
 end
